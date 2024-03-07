@@ -5,7 +5,7 @@ class User:
     new_id = itertools.count()
     def __init__(self, matrix = None):
         if matrix is None:
-            matrix = np.zeros((12, 5))
+            matrix = np.ones((12, 5))
         else:
             matrix = matrix
         self.id = next(User.new_id)
@@ -13,14 +13,14 @@ class User:
 
 class Scheduler:
     def schedule(self, user, xy):
-        if user.matrix[xy[0], xy[1]] == 0:
-            user.matrix[xy[0], xy[1]] = 1
+        if user.matrix[xy[0], xy[1]] == 1:
+            user.matrix[xy[0], xy[1]] = 0
         else:
             print(f'Horário não está disponível.')
 
     def cancel(self, user, xy):
-        if user.matrix[xy[0], xy[1]] == 1:
-            user.matrix[xy[0], xy[1]] = 0
+        if user.matrix[xy[0], xy[1]] == 0:
+            user.matrix[xy[0], xy[1]] = 1
         else:
             print(f'O usuário não possui compromisso marcado neste dia')
 
